@@ -1,0 +1,60 @@
+﻿<Window x:Class="Canbus_sender.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Canbus_sender"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+
+        <Grid Margin="10">
+            
+
+            <!-- Baud Rate Section -->
+            <TextBlock Text="Baud Rate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+            <ComboBox x:Name="BaudRateComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,30,0,0" Width="120">
+                <ComboBoxItem Content="500" />
+                <ComboBoxItem Content="250" />
+            </ComboBox>
+
+            <!-- USB Port Section -->
+            <TextBlock Text="USB Port" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="160,10,0,0"/>
+            <ComboBox x:Name="UsbPortComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="160,30,0,0" Width="150"/>
+
+            <!-- Connection Button and Status -->
+            <Button x:Name="ConnectButton" Content="Connect" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="320,30,0,0" Width="100" Click="ConnectButton_Click"/>
+            <Ellipse x:Name="ConnectionStatusIndicator" Width="20" Height="20" Fill="Red" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="533,30,0,0"/>
+
+            <!-- CAN Message ID -->
+            <TextBlock Text="Message ID (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,70,0,0"/>
+            <TextBox x:Name="MsgIdTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,90,0,0" Width="100"/>
+
+            <!-- Cycle Time -->
+            <TextBlock Text="Cycle Time (ms)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,70,0,0"/>
+            <TextBox x:Name="CycleTimeTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,90,0,0" Width="100"/>
+
+            <!-- Data Bytes -->
+            <TextBlock Text="Message Data (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,130,0,0"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,150,0,0">
+                <TextBox x:Name="DataByte0" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte1" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte2" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte3" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte4" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte5" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte6" Width="30" MaxLength="2" Margin="2"/>
+                <TextBox x:Name="DataByte7" Width="30" MaxLength="2" Margin="2"/>
+            </StackPanel>
+
+            <!-- Send Button -->
+            <Button x:Name="SendButton" Content="Send" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,200,0,0" Width="100" Click="SendButton_Click"/>
+            <Button x:Name="DisconnectButton" Content="Disconnect" Click="Disconnect_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="428,30,0,0" Width="100" />
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>
