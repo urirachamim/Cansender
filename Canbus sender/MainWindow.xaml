@@ -51,6 +51,8 @@
             <!-- Send Button -->
             <Button x:Name="SendButton" Content="Send" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,200,0,0" Width="100" Click="SendButton_Click"/>
             <Button x:Name="DisconnectButton" Content="Disconnect" Click="Disconnect_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="428,30,0,0" Width="100" />
+            <Label   Name="MessageCountLabel" Content="Count" HorizontalAlignment="Left" Margin="321,149,0,0" VerticalAlignment="Top"/>
+ 
 
 
 
