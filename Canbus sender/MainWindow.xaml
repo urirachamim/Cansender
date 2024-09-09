@@ -46,7 +46,16 @@
                 <TextBox x:Name="DataByte6" Width="30" MaxLength="2" Margin="2"/>
                 <TextBox x:Name="DataByte7" Width="30" MaxLength="2" Margin="2"/>
             </StackPanel>
-
+          
+             <CheckBox x:Name="AliveCounterCheckBox"
+                  Content="Enable Alive Counter"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Margin="10,231,0,0"
+                  Checked="AliveCounterCheckBox_Checked"
+                  Unchecked="AliveCounterCheckBox_Unchecked"/>
+            
+            
             <!-- Send Button -->
             <Button x:Name="SendButton" Content="Send" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="11,314,0,0" Width="100" Click="SendButton_Click"/>
             <Button x:Name="DisconnectButton" Content="Disconnect" Click="Disconnect_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="428,30,0,0" Width="100" />

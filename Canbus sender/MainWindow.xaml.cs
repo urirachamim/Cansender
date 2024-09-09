@@ -22,11 +22,15 @@ using System.Timers;
 namespace Canbus_sender
 {
 
-    
+    // IMPROVE DISCONECTIO 
+    //ADD AN OPTION TO CHOSES THE BIT TO RUN THE ALIVE COUNTER 
+    // ADD NICE DESIGNE 
+    // ADD A COUNT LABLE TO THE ALIVE COUNTER 
+    //RELEASE THE VERSION TO THE TEEM 
     
     public partial class MainWindow : Window
     {
-
+        private bool isAliveCounterEnabled = false;
         private System.Timers.Timer sendTimer;
         private const ushort canHandle = PCANBasic.PCAN_USBBUS1;  // PCAN-USB Channel 1 as a constant ushort
         private TPCANBaudrate baudRate = TPCANBaudrate.PCAN_BAUD_500K;
@@ -102,6 +106,11 @@ namespace Canbus_sender
 
 
 
+
+       
+
+
+
         private Stopwatch stopwatch = new Stopwatch();
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
@@ -143,6 +152,25 @@ namespace Canbus_sender
         }
 
 
+
+        private void AliveCounterCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            // Enable the alive counter
+            ToggleAliveCounter(true);
+        }
+
+        private void AliveCounterCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Disable the alive counter
+            ToggleAliveCounter(false);
+        }
+
+        private void ToggleAliveCounter(bool enable)
+        {
+            isAliveCounterEnabled = enable;
+        }
+
+
         int aliveCounter = 0;
         private void SendTimer_Tick(object sender, ElapsedEventArgs e)
         {
@@ -152,7 +180,7 @@ namespace Canbus_sender
                 TPCANMsg canMessage = new TPCANMsg();
                 canMessage.ID = uint.Parse(ReadTextBox(MsgIdTextBox), System.Globalization.NumberStyles.HexNumber);
                 canMessage.LEN = 8;  // Data length is always 8 for this example
-                canMessage.MSGTYPE = TPCANMessageType.PCAN_MESSAGE_STANDARD;
+                canMessage.MSGTYPE = TPCANMessageType.PCAN_MESSAGE_EXTENDED;
 
                 // Initialize the DATA array with 8 bytes
                 canMessage.DATA = new byte[8];
@@ -167,9 +195,15 @@ namespace Canbus_sender
 
 
 
-                // Add the alive counter to DATA[7], which increments from 0 to 15 and wraps around
-                canMessage.DATA[7] = (byte)(aliveCounter % 16);  // Set alive counter (0-15) in DATA[7]
-                aliveCounter++;  // Increment the alive counter for the next cycle
+                if (isAliveCounterEnabled)
+                {
+                    canMessage.DATA[7] = (byte)(aliveCounter % 16);  // Set alive counter (0-15) in DATA[7]
+                    aliveCounter++;  // Increment the alive counter for the next cycle
+                }
+                else
+                {
+                    canMessage.DATA[7] = Convert.ToByte(ReadTextBox(DataByte7), 16); // Use the value from the TextBox if counter is disabled
+                }
 
 
                 // Send the CAN message
@@ -228,9 +262,10 @@ namespace Canbus_sender
 
 
           
-            baudRate = TPCANBaudrate.PCAN_BAUD_1M; 
+            baudRate = TPCANBaudrate.PCAN_BAUD_1M;
+            
+            ConnectButton.IsEnabled = true;
 
-           
         }
 
     }
