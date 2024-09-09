@@ -37,6 +37,7 @@ namespace Canbus_sender
             sendTimer = new DispatcherTimer();
             sendTimer.Interval = TimeSpan.FromMilliseconds(20);
             sendTimer.Tick += SendTimer_Tick;
+            PopulateUsbPorts();
 
         }
 
@@ -46,13 +47,10 @@ namespace Canbus_sender
             List<string> availablePorts = new List<string>();
 
             // Assuming 1-16 range for PCAN-USB
-            for (ushort i = 1; i <= 16; i++)
+            for (ushort i = 1; i <= 4; i++)
             {
                 TPCANStatus status = PCANBasic.GetStatus((ushort)(PCANBasic.PCAN_USBBUS1 + i - 1));
-                if (status == TPCANStatus.PCAN_ERROR_OK)
-                {
-                    availablePorts.Add($"PCAN-USB {i}");  // Adapter found, add to list
-                }
+                availablePorts.Add($"PCAN-USB {i}");  // Adapter found, add to list
             }
 
             UsbPortComboBox.ItemsSource = availablePorts;
@@ -81,7 +79,7 @@ namespace Canbus_sender
             else
             {
                 ConnectionStatusIndicator.Fill = new SolidColorBrush(Colors.Red); // Red indicates failure
-                MessageBox.Show("Failed to connect.");
+                MessageBox.Show("Check connections.");
             }
         }
 
@@ -174,14 +172,7 @@ namespace Canbus_sender
             TPCANStatus result = PCANBasic.Uninitialize(canHandle);
 
           
-            if (result == TPCANStatus.PCAN_ERROR_OK)
-            {
-               // MessageBox.Show("Disconnected from CAN bus.");
-            }
-            else
-            {
-                MessageBox.Show("Failed to disconnect from CAN bus.");
-            }
+            
 
             // Reset baud rate to indicate no selection or default state
             baudRate = TPCANBaudrate.PCAN_BAUD_1M; // or any default value you choose to represent "no selection"
