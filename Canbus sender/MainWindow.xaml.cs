@@ -31,7 +31,8 @@ namespace Canbus_sender
         private const ushort canHandle = PCANBasic.PCAN_USBBUS1;  // PCAN-USB Channel 1 as a constant ushort
         private TPCANBaudrate baudRate = TPCANBaudrate.PCAN_BAUD_500K;
         private bool isSending = false;
-
+        private int[] bitCounters = new int[8];  // Counters for each bit (0-7)
+        private bool[] bitEnabled = new bool[8]; // Track if live counter is enabled for each bit (based on checkbox)
 
 
         public MainWindow()
@@ -51,6 +52,10 @@ namespace Canbus_sender
             //sendTimer.AutoReset = true; // Ensure the timer repeats
             //sendTimer.Enabled = false; // Initially disabled
         }
+
+
+ 
+
 
         private void PopulateUsbPorts()
         {
@@ -136,6 +141,9 @@ namespace Canbus_sender
             });
             return text;
         }
+
+
+        int aliveCounter = 0;
         private void SendTimer_Tick(object sender, ElapsedEventArgs e)
         {
             try
@@ -156,6 +164,13 @@ namespace Canbus_sender
                 canMessage.DATA[5] = Convert.ToByte(ReadTextBox(DataByte5), 16);
                 canMessage.DATA[6] = Convert.ToByte(ReadTextBox(DataByte6), 16);
                 canMessage.DATA[7] = Convert.ToByte(ReadTextBox(DataByte7), 16);
+
+
+
+                // Add the alive counter to DATA[7], which increments from 0 to 15 and wraps around
+                canMessage.DATA[7] = (byte)(aliveCounter % 16);  // Set alive counter (0-15) in DATA[7]
+                aliveCounter++;  // Increment the alive counter for the next cycle
+
 
                 // Send the CAN message
                 TPCANStatus result = PCANBasic.Write(canHandle, ref canMessage);

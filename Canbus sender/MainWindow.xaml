@@ -10,7 +10,6 @@
 
 
         <Grid Margin="10">
-            
 
             <!-- Baud Rate Section -->
             <TextBlock Text="Baud Rate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
@@ -49,10 +48,18 @@
             </StackPanel>
 
             <!-- Send Button -->
-            <Button x:Name="SendButton" Content="Send" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,200,0,0" Width="100" Click="SendButton_Click"/>
+            <Button x:Name="SendButton" Content="Send" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="11,314,0,0" Width="100" Click="SendButton_Click"/>
             <Button x:Name="DisconnectButton" Content="Disconnect" Click="Disconnect_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="428,30,0,0" Width="100" />
             <Label   Name="MessageCountLabel" Content="Count" HorizontalAlignment="Left" Margin="321,149,0,0" VerticalAlignment="Top"/>
- 
+            <Label Content=" 0" HorizontalAlignment="Left" Margin="16,167,0,0" VerticalAlignment="Top" Width="21"/>
+            <Label Content=" 1" HorizontalAlignment="Left" Margin="49,168,0,0" VerticalAlignment="Top" Width="21"/>
+            <Label Content=" 2" HorizontalAlignment="Left" Margin="83,168,0,0" VerticalAlignment="Top" Width="26"/>
+            <Label Content="3" HorizontalAlignment="Left" Margin="120,168,0,0" VerticalAlignment="Top" Width="22"/>
+            <Label Content="4" HorizontalAlignment="Left" Margin="154,168,0,0" VerticalAlignment="Top" Width="22"/>
+            <Label Content="5" HorizontalAlignment="Left" Margin="188,169,0,0" VerticalAlignment="Top" Width="24"/>
+            <Label Content="6" HorizontalAlignment="Left" Margin="222,170,0,0" VerticalAlignment="Top" Width="24"/>
+            <Label Content="7" HorizontalAlignment="Left" Margin="255,170,0,0" VerticalAlignment="Top" Width="24"/>
+
 
 
 
