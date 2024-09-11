@@ -9,38 +9,35 @@
     <Grid>
 
 
-        <Grid Margin="10">
+        <Grid Margin="-4,2,0,-19">
             <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FF74E3E6" Offset="0.071"/>
-                </LinearGradientBrush>
+                <ImageBrush ImageSource="/Capture.PNG"/>
             </Grid.Background>
 
             <StackPanel Orientation="Vertical" Margin="11,193,567,156">
-                <TextBlock Text="Select Data Byte for Alive Counter" FontWeight="Bold" />
+                <TextBlock Text="Select Data Byte for Alive Counter" FontWeight="Bold" Background="#FFDCD5D5" />
                 <ComboBox x:Name="DataByteSelectionComboBox" Width="150" SelectionChanged="DataByteSelectionComboBox_SelectionChanged">
-                    <ComboBoxItem Content="DATA 0" Tag="0" />
-                    <ComboBoxItem Content="DATA 1" Tag="1" />
-                    <ComboBoxItem Content="DATA 2" Tag="2" />
-                    <ComboBoxItem Content="DATA 3" Tag="3" />
-                    <ComboBoxItem Content="DATA 4" Tag="4" />
-                    <ComboBoxItem Content="DATA 5" Tag="5" />
-                    <ComboBoxItem Content="DATA 6" Tag="6" />
-                    <ComboBoxItem Content="DATA 7" Tag="7" />
+                    <ComboBoxItem Content="Byte 0" Tag="0" />
+                    <ComboBoxItem Content="Byte 1" Tag="1" />
+                    <ComboBoxItem Content="Byte 2" Tag="2" />
+                    <ComboBoxItem Content="Byte 3" Tag="3" />
+                    <ComboBoxItem Content="Byte 4" Tag="4" />
+                    <ComboBoxItem Content="Byte 5" Tag="5" />
+                    <ComboBoxItem Content="Byte 6" Tag="6" />
+                    <ComboBoxItem Content="Byte 7" Tag="7" />
                 </ComboBox>
 
                 <!-- ComboBox for selecting the byte (DATA[0] to DATA[7]) -->
             </StackPanel>
             <!-- Baud Rate Section -->
-            <TextBlock Text="Baud Rate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontWeight="Bold"/>
+            <TextBlock Text="Baud Rate" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" FontWeight="Bold" Foreground="#FFEFEAEA"/>
             <ComboBox x:Name="BaudRateComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,30,0,0" Width="120">
                 <ComboBoxItem Content="500" />
                 <ComboBoxItem Content="250" />
             </ComboBox>
 
             <!-- USB Port Section -->
-            <TextBlock Text="USB Port" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="160,10,0,0" FontWeight="Bold"/>
+            <TextBlock Text="USB Port" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="160,10,0,0" FontWeight="Bold" Foreground="#FFF3EDED"/>
             <ComboBox x:Name="UsbPortComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="160,30,0,0" Width="150"/>
 
             <!-- Connection Button and Status -->
@@ -48,48 +45,50 @@
             <Ellipse x:Name="ConnectionStatusIndicator" Width="20" Height="20" Fill="Red" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="533,30,0,0"/>
 
             <!-- CAN Message ID -->
-            <TextBlock Text="Message ID (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,70,0,0" FontWeight="Bold"/>
-            <TextBox x:Name="MsgIdTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,90,0,0" Width="100"/>
+            <TextBlock Text="Message ID (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,70,0,0" FontWeight="Bold" Foreground="#FFE6D9D9"/>
+            <TextBox x:Name="MsgIdTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,90,0,0" Width="100" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
 
             <!-- Cycle Time -->
-            <TextBlock Text="Cycle Time (ms)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,70,0,0" FontWeight="Bold"/>
-            <TextBox x:Name="CycleTimeTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,90,0,0" Width="100"/>
+            <TextBlock Text="Cycle Time (ms)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,70,0,0" FontWeight="Bold" Foreground="#FFE2D7D7"/>
+            <TextBox x:Name="CycleTimeTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,90,0,0" Width="100" PreviewTextInput="NumericTextBox_PreviewTextInput" />
 
             <!-- Data Bytes -->
-            <TextBlock Text="Message Data (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,130,0,0" FontWeight="Bold"/>
+            <TextBlock Text="Message Data (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,130,0,0" FontWeight="Bold" Foreground="#FFF5F1F1"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,150,0,0">
-                <TextBox x:Name="DataByte0" Width="30" MaxLength="2" Margin="2" />
-                <TextBox x:Name="DataByte1" Width="30" MaxLength="2" Margin="2" />
-                <TextBox x:Name="DataByte2" Width="30" MaxLength="2" Margin="2"  />
-                <TextBox x:Name="DataByte3" Width="30" MaxLength="2" Margin="2"  />
-                <TextBox x:Name="DataByte4" Width="30" MaxLength="2" Margin="2"  />
-                <TextBox x:Name="DataByte5" Width="30" MaxLength="2" Margin="2"  />
-                <TextBox x:Name="DataByte6" Width="30" MaxLength="2" Margin="2"  />
-                <TextBox x:Name="DataByte7" Width="30" MaxLength="2" Margin="2" />
+
+                <TextBox x:Name="DataByte0" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte1" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte2" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte3" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte4" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte5" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte6" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
+                <TextBox x:Name="DataByte7" Width="30" MaxLength="2" Margin="2"  PreviewTextInput="myTextBox_PreviewTextInput" TextChanged="myTextBox_TextChanged"  CharacterCasing="Upper"/>
             </StackPanel>
 
-            <CheckBox x:Name="AliveCounterCheckBox"
+            <CheckBox x:Name="AliveCounterCheckBox" 
                   Content="Enable Alive Counter"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
+                  Foreground ="White" 
                   Margin="16,256,0,0"
                   Checked="AliveCounterCheckBox_Checked"
-                  Unchecked="AliveCounterCheckBox_Unchecked"/>
+                  Unchecked="AliveCounterCheckBox_Unchecked" Background="#FFF9EFEF"/>
 
 
             <!-- Send Button -->
             <Button x:Name="SendButton" Content="SEND" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="427,308,0,0" Width="100" Click="SendButton_Click" FontWeight="Bold"/>
             <Button x:Name="DisconnectButton" Content="Disconnect" Click="Disconnect_Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="428,30,0,0" Width="100" FontWeight="Bold" />
-            <Label   Name="MessageCountLabel" Content="Cycle" HorizontalAlignment="Left" Margin="321,149,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <Label Content=" 0" HorizontalAlignment="Left" Margin="16,167,0,0" VerticalAlignment="Top" Width="21"/>
-            <Label Content=" 1" HorizontalAlignment="Left" Margin="49,168,0,0" VerticalAlignment="Top" Width="21"/>
-            <Label Content=" 2" HorizontalAlignment="Left" Margin="83,168,0,0" VerticalAlignment="Top" Width="26"/>
-            <Label Content="3" HorizontalAlignment="Left" Margin="120,168,0,0" VerticalAlignment="Top" Width="22"/>
-            <Label Content="4" HorizontalAlignment="Left" Margin="154,168,0,0" VerticalAlignment="Top" Width="22"/>
-            <Label Content="5" HorizontalAlignment="Left" Margin="188,169,0,0" VerticalAlignment="Top" Width="24"/>
-            <Label Content="6" HorizontalAlignment="Left" Margin="222,170,0,0" VerticalAlignment="Top" Width="24"/>
-            <Label Content="7" HorizontalAlignment="Left" Margin="255,170,0,0" VerticalAlignment="Top" Width="24"/>
-            <Label  Name="Counter_mod16" Content="Counter" HorizontalAlignment="Left" Margin="198,251,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label   Name="MessageCountLabel" Foreground ="White"  Content="Cycle" HorizontalAlignment="Left" Margin="321,149,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content=" 0" HorizontalAlignment="Left" Margin="16,167,0,0" VerticalAlignment="Top" Width="21" Foreground ="White" />
+            <Label Content=" 1" HorizontalAlignment="Left" Margin="49,168,0,0" VerticalAlignment="Top" Width="21" Foreground ="White" />
+            <Label Content=" 2" HorizontalAlignment="Left" Margin="83,168,0,0" VerticalAlignment="Top" Width="26" Foreground ="White" />
+            <Label Content="3" HorizontalAlignment="Left" Margin="120,168,0,0" VerticalAlignment="Top" Width="22" Foreground ="White" />
+            <Label Content="4" HorizontalAlignment="Left" Margin="154,168,0,0" VerticalAlignment="Top" Width="22" Foreground ="White" />
+            <Label Content="5" HorizontalAlignment="Left" Margin="188,169,0,0" VerticalAlignment="Top" Width="24" Foreground ="White" />
+            <Label Content="6" HorizontalAlignment="Left" Margin="222,170,0,0" VerticalAlignment="Top" Width="24" Foreground ="White" />
+            <Label Content="7" HorizontalAlignment="Left" Margin="255,170,0,0" VerticalAlignment="Top" Width="24" Foreground ="White" />
+            <Label  Name="Counter_mod16" Content="Counter" HorizontalAlignment="Left" Margin="198,251,0,0" VerticalAlignment="Top" FontWeight="Bold"  Foreground ="White" />
             <Button x:Name="STOPButton_Copy" Content="STOP" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="320,308,0,0" Width="100" Click="STOPButton_Click" FontWeight="Bold"/>
 
 

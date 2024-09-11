@@ -46,6 +46,7 @@ namespace Canbus_sender
             InitializeComponent();
             InitializeTimer();
             PopulateUsbPorts();
+            
 
         }
 
@@ -133,11 +134,41 @@ namespace Canbus_sender
         }
 
 
+        private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Check if the input text is a digit
+            e.Handled = !IsTextNumeric(e.Text);
+        }
+
+        private bool IsTextNumeric(string text)
+        {
+            // Use a regular expression to check if the input is a number
+            return System.Text.RegularExpressions.Regex.IsMatch(text, @"^[0-9]+$");
+        }
+
+        // Allow only letters and numbers
+        private void myTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[A-Za-z0-9]$"))
+            {
+                // Prevent the character from being added
+                e.Handled = true;
+            }
+        }
+
+        private void myTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            int caretIndex = textBox.CaretIndex;
 
 
 
+            string inputText = textBox.Text.ToUpper();
 
-       
+            textBox.Text = inputText;
+
+            textBox.CaretIndex = caretIndex;
+        }
 
 
 

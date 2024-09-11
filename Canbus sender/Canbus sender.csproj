@@ -231,6 +231,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Capture.PNG" />
+    <Resource Include="libs\Capture.PNG" />
     <Content Include="libs\PCANBasic.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
