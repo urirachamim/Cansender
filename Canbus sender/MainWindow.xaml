@@ -46,7 +46,7 @@
 
             <!-- CAN Message ID -->
             <TextBlock Text="Message ID (Hex)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,70,0,0" FontWeight="Bold" Foreground="#FFE6D9D9"/>
-            <TextBox x:Name="MsgIdTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,90,0,0" Width="100" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+            <TextBox x:Name="MsgIdTextBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,90,0,0" Width="100" />
 
             <!-- Cycle Time -->
             <TextBlock Text="Cycle Time (ms)" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,70,0,0" FontWeight="Bold" Foreground="#FFE2D7D7"/>

@@ -173,11 +173,18 @@ namespace Canbus_sender
 
 
         private Stopwatch stopwatch = new Stopwatch();
-
+        private bool isConnected = false;
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
 
-          
+            
+         if(isConnected)
+            {
+                
+                MessageBox.Show("Please connect to the CAN bus before sending messages.");
+                return;
+
+            }
 
             // Ensure the input is a valid integer
             if (int.TryParse(CycleTimeTextBox.Text, out int cycleTime) && cycleTime > 0)
@@ -197,7 +204,7 @@ namespace Canbus_sender
             {
                 Dispatcher.Invoke(() =>
                 {
-                    MessageBox.Show("Please enter a valid cycle time in milliseconds.");
+                    MessageBox.Show("Set baud rate.");
                 });
             }
         }
