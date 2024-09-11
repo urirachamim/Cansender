@@ -156,6 +156,8 @@ namespace Canbus_sender
             }
         }
 
+
+
         private void myTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = sender as TextBox;
