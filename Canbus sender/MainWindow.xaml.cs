@@ -172,6 +172,27 @@ namespace Canbus_sender
         }
 
 
+
+        private void STOPButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (isSending)
+
+            {
+                sendTimer.Stop();
+                isSending = false;
+
+
+            }
+        }
+
+
+
+
+        
+
+
+
         private int messageCount = 0;  // Counter to track number of messages sent
 
         string ReadTextBox(TextBox tb)
@@ -190,6 +211,8 @@ namespace Canbus_sender
         {
             // Enable the alive counter
             ToggleAliveCounter(true);
+            
+
         }
 
         private void AliveCounterCheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -237,6 +260,11 @@ namespace Canbus_sender
                     canMessage.DATA[selectedDataByte] = (byte)(aliveCounter % 16);  // Set alive counter (0-15)
                     aliveCounter++;  // Increment the alive counter for the next cycle
 
+                    Dispatcher.Invoke(() =>
+                    {
+                        Counter_mod16.Content = $"Alive Counter: {aliveCounter % 16}";
+                    });
+
                 }
                 else
                 {
@@ -274,8 +302,10 @@ namespace Canbus_sender
                     // Use Dispatcher to update the UI safely
                     Dispatcher.Invoke(() =>
                     {
-                        // Update message count label
+                        // Update message count labels
                         MessageCountLabel.Content = $"Messages Sent: {messageCount}";
+
+                      
                     });
                 }
             }
@@ -326,6 +356,8 @@ namespace Canbus_sender
  
 
         }
+
+       
     }
 
     
